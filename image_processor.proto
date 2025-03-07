@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+service ImageProcessor {
+    rpc ProcessImage (ImageRequest) returns (ImageResponse);
+}
+
+message ImageRequest {
+    bytes image_data = 1;
+    repeated string operations = 2;
+    int32 rotate_degrees = 3;
+    int32 resize_width = 4;
+    int32 resize_height = 5;
+    bool generate_thumbnail = 6;
+    int32 thumbnail_width = 7;
+    int32 thumbnail_height = 8;
+}
+
+message ImageResponse {
+    bytes processed_image = 1;
+    bytes thumbnail_image = 2;
+    string message = 3;
+    repeated bytes intermediate_images = 4;
+}
+
